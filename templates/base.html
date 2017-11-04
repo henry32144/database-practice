@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A database Hands-on lab for the readers of the book 'Fundamentals of Database Systems'">
+    <meta name="author" content="Henry">
+
+    <title>{% block title %}Database - home{% endblock title %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link async href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <style>
+      body {
+        padding-top: 54px;
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">Hello</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          {% set navigation_bar = [
+              ('/', 'home', 'Home'),
+              ('/query', 'query', 'Query'),
+              ('/about', 'about', 'About'),
+              ('/contact', 'contact', 'Contact'),
+          ] -%}
+          <ul class="navbar-nav ml-auto">
+          {% set active_page = active_page|default('home') -%}
+          {% for href, id, caption in navigation_bar %}
+              <li{% if id == active_page %}
+                  class="nav-item active" 
+                  {% else %}
+                  class="nav-item"
+                  {% endif%}>
+                  <a class="nav-link" href="{{ href|e }}">{{ caption|e }}</a>
+              </li>
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          {% block headcontent %}{% endblock headcontent %}
+          <ul class="list-unstyled">
+            <li><a target="_blank" href="http://catalogue.pearsoned.co.uk/educator/product/Fundamentals-of-Database-Systems-Global-Edition/9781292097619.page">For book Fundamentals-of-Database-Systems-Global-Edition</a></li>
+            <li>This website is made by Henry Wu</li>
+          </ul>
+          <HR>
+          <div class="table-responsive">
+          <!-- Data Table Preview -->
+          {% block tablecontent %}{% endblock tablecontent %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+
+</html>
