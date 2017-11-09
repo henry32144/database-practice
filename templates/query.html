@@ -36,19 +36,20 @@
 
 {% block resultstatus %}
   <P>{{ user_input }}</P>
-
-  {% if status.error %}
-    <div class="alert alert-danger">
-      <strong>Error!</strong> {{ error_message }}
-    </div>
-  {% elif status.warn %}
-    <div class="alert alert-warning">
-      <strong>Warning!</strong> {{ status.warn }}
-    </div>
-  {% elif status.success %}
-    <div class="alert alert-success">
-      <strong>Success!</strong> {{ status.success }}
-    </div>
+  {% if status %}
+    {% if status.error %}
+      <div class="alert alert-danger">
+        <strong>Error!</strong> {{ error_message }}
+      </div>
+    {% elif status.warn %}
+      <div class="alert alert-warning">
+        <strong>Warning!</strong> {{ status.warn }}
+      </div>
+    {% elif status.success %}
+      <div class="alert alert-success">
+        <strong>Success!</strong> {{ status.success }}
+      </div>
+    {% endif %}
   {% endif %}
 {% endblock resultstatus %}
 
