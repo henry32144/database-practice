@@ -14,18 +14,19 @@ def index():
 		'SELECT * FROM EMPLOYEE'
 	).fetchall()
 	employees = []
+	columns = cursor[0].keys()
 	for row in cursor:
 		employees.append({
-			'Fname': row[0],
-			'Minit': row[1],
-			'Lname': row[2],
-			'Ssn': row[3],
-			'Bdate': row[4],
-			'Address': row[5],
-			'Sex': row[6],
-			'Salary': row[7],
-			'Super_ssn': row[8],
-			'Dno': row[9],
+			columns[0]: row[0],
+			columns[1]: row[1],
+			columns[2]: row[2],
+			columns[3]: row[3],
+			columns[4]: row[4],
+			columns[5]: row[5],
+			columns[6]: row[6],
+			columns[7]: row[7],
+			columns[8]: row[8],
+			columns[9]: row[9],
 		})
 	if not employees:
 		err_msg = "<p>There are something wrong in database, please Contact me</p>"
@@ -47,7 +48,13 @@ def show_contact():
 def show_query():
 	return render_template('query.html')
 
+@app.route('/query/select-example', methods=['POST'])
+def select_example():
+	return render_template('query.html')
 
+@app.route('/query/submit-query', methods=['POST'])
+def submit_query():
+	return render_template('query.html')
 
 # Database Functions
 def get_db():
@@ -56,6 +63,7 @@ def get_db():
 		db = g._database  = sqlite3.connect(SQLITE_DB_PATH)
 		# Enable foreign key check
 		db.execute("PRAGMA foreign_keys = ON")
+		db.row_factory = sqlite3.Row
 	return db
 
 @app.teardown_request
