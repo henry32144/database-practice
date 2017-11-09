@@ -4,9 +4,9 @@
 {% block title %}Database - query{% endblock title %}
 
 {% block headcontent %}
-<h1 class="mt-5">Give it a try!</h1>
-<p class="lead">You can try to use the example in the book, or type your own query<br>
-because the limit of free server, only SELECT operator is available</p>
+  <h1 class="mt-5">Give it a try!</h1>
+  <p class="lead">You can try to use the example in the book, or type your own query<br>
+  because the limit of free server, only SELECT operator is available</p>
 {% endblock headcontent %}
 
 {% block tablecontent %}
@@ -23,10 +23,10 @@ because the limit of free server, only SELECT operator is available</p>
 	  </form>
 	</div>
 	<div class="form-group col-lg-10">
-	  <form class="input-group" action="/query/submit-query" method="post">
-		  <textarea class="form-control" rows="5" id="type" name="type-area" placeholder="SELECT ONLY"></textarea>
+	  <form class="input-group" action="/query/submit-query" method="post" role="form">
+		  <textarea class="form-control" rows="5" id="type-area" name="query-text"placeholder="SELECT ONLY"></textarea>
 		  <span class="input-group-btn" aria-hidden="true">
-	    	<button class="btn btn-primary" type="submit" value="Submit">Query</button>
+	    	<button class="btn btn-primary" id="submit-query" value="Submit" type="submit">Query</button>
 	      </span>
 	  </form>
 	</div>
@@ -34,6 +34,46 @@ because the limit of free server, only SELECT operator is available</p>
 <HR>
 {% endblock tablecontent %}
 
-{% block tableresult %}
+{% block resultstatus %}
+  <P>{{ user_input }}</P>
 
+  {% if status.error %}
+    <div class="alert alert-danger">
+      <strong>Error!</strong> {{ error_message }}
+    </div>
+  {% elif status.warn %}
+    <div class="alert alert-warning">
+      <strong>Warning!</strong> {{ status.warn }}
+    </div>
+  {% elif status.success %}
+    <div class="alert alert-success">
+      <strong>Success!</strong> {{ status.success }}
+    </div>
+  {% endif %}
+{% endblock resultstatus %}
+
+{% block tableresult %}
+  <HR>
+  {%- if results -%}
+    <h3 class="mt-1">Result</h3>
+    <!-- Data Table Preview -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          {% for column_name in columns %}
+            <th>{{ column_name|e }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for result in results %}
+          <tr>
+            {% for key,value in result.items() %}
+              <th>{{ value }}</th>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
 {% endblock tableresult %}

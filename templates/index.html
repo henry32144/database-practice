@@ -2,8 +2,8 @@
 {% set active_page = "home" %}
 
 {% block headcontent %}
-<h1 class="mt-5">A database Hands-on lab</h1>
-<p class="lead">You can try the SQL queries command on the book!</p>
+  <h1 class="mt-5">A database Hands-on lab</h1>
+  <p class="lead">You can try the SQL queries command on the book!</p>
 {% endblock headcontent %}
 
 {% block tablecontent %}
@@ -27,18 +27,18 @@
   </thead>
   <tbody>
     {% for employee in employees %}
-    <tr>
-      <th>{{ employee.Fname }}</th>
-      <th>{{ employee.Minit }}</th>
-      <th>{{ employee.Lname }}</th>
-      <th>{{ employee.Ssn }}</th>
-      <th>{{ employee.Bdate }}</th>
-      <th>{{ employee.Address }}</th>
-      <th>{{ employee.Sex }}</th>
-      <th>{{ employee.Salary }}</th>
-      <th>{{ employee.Super_ssn }}</th>
-      <th>{{ employee.Dno }}</th>
-    </tr>
+      <tr>
+        <th>{{ employee.Fname }}</th>
+        <th>{{ employee.Minit }}</th>
+        <th>{{ employee.Lname }}</th>
+        <th>{{ employee.Ssn }}</th>
+        <th>{{ employee.Bdate }}</th>
+        <th>{{ employee.Address }}</th>
+        <th>{{ employee.Sex }}</th>
+        <th>{{ employee.Salary }}</th>
+        <th>{{ employee.Super_ssn }}</th>
+        <th>{{ employee.Dno }}</th>
+      </tr>
     {% endfor %}
   </tbody>
 </table>

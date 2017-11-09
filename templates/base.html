@@ -11,9 +11,9 @@
     <title>{% block title %}Database - home{% endblock title %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link async href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link async href="../static/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" >
-    <link async href="../static/vendor/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link async href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link async href="{{ url_for('static', filename='vendor/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" >
+    <link async href="{{ url_for('static', filename='vendor/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style>
       body {
@@ -76,6 +76,7 @@
           <div class="table-responsive">
           <!-- Data Table Preview -->
           {% block tablecontent %}{% endblock tablecontent %}
+          {% block resultstatus %}{% endblock resultstatus %}
           {% block tableresult %}{% endblock tableresult %}
           </div>
         </div>
@@ -83,10 +84,32 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="../static/vendor/jquery/jquery.min.js"></script>
-    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../static/vendor/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../static/js/app.js"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='js/app.js') }}"></script> -->
+    <script type="text/javascript">
+      $(function() {
+        var arTags = ["apple", "orange"]; 
+        $("#search-bar").autocomplete({source: arTags});
+        console.log('123');
+        // $('button#submit-query').click(function() {
+        //   var type_val = $('#type-area').val();
+        //   alert('clicked!');
+        //   $.ajax({
+        //     url: '/query/submit-query',
+        //     data: {data: JSON.stringify(type_val)},
+        //     type: 'POST',
+        //     success: function(response) {
+        //               console.log(response);
+        //           },
+        //           error: function(error) {
+        //               console.log(error);
+        //           }
+        //   });
+        // });
+      });
+    </script>
   </body>
 
 </html>

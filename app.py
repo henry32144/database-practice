@@ -4,7 +4,11 @@ from flask import Flask, render_template, request, g
 app = Flask(__name__)
 SQLITE_DB_PATH = 'enterprise.db'
 
-
+status_code = {	'operator_warn':"Only SELECT operator is accepted",
+				'empty_warn':"Nothing input",
+				'success':"Request has been send successful",
+				'error':"An error occurred:",
+}
 
 
 @app.route('/')
@@ -54,7 +58,45 @@ def select_example():
 
 @app.route('/query/submit-query', methods=['POST'])
 def submit_query():
-	return render_template('query.html')
+	db = get_db()
+	status = ''
+	query_code = request.form.get('query-text')
+	if query_code != '':
+		query_code = string_process(query_code)
+
+		if query_code == 0:
+			print('invalid')
+			return render_template('query.html',
+				status = {'warn':status_code['operator_warn']},
+				user_input = query_code)
+		else:
+			try:
+				db = get_db()
+				cursor = db.execute(
+					query_code
+				).fetchall()
+				results = []
+				columns = cursor[0].keys()
+				for row in cursor:
+					current_data = {}
+					count = 0
+					for value in row:
+						current_data.update({columns[count]: value})
+						count+=1
+					results.append(current_data)
+
+				return render_template('query.html',
+					status = {'success':status_code['success']},
+					user_input = query_code,
+					columns = columns,
+					results = results)
+			except sqlite3.Error as e:
+				return render_template('query.html',
+					status = {'error':status_code['error']},
+					user_input = query_code,
+					error_message = e.args[0])
+	return render_template('query.html',
+				status = {'warn':status_code['empty_warn']})
 
 # Database Functions
 def get_db():
@@ -65,6 +107,19 @@ def get_db():
 		db.execute("PRAGMA foreign_keys = ON")
 		db.row_factory = sqlite3.Row
 	return db
+
+def string_process(query_str):
+	is_valid = True
+	query_str = query_str.replace('\'','\"')
+	unavaliabe = ['DELETE','DROP','UPDATE','CREATE']
+	for i in unavaliabe:
+		if query_str.find(i) != -1:
+			is_valid = False
+	if is_valid != True:
+		return 0
+	else:
+		return query_str
+
 
 @app.teardown_request
 def teardown_request(exception):
