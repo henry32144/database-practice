@@ -90,9 +90,10 @@
     <!-- <script src="{{ url_for('static', filename='js/app.js') }}"></script> -->
     <script type="text/javascript">
       $(function() {
-        var arTags = ["apple", "orange"]; 
-        $("#search-bar").autocomplete({source: arTags});
-        console.log('123');
+        exampleData = '';
+        arTags = []; 
+        getJsondata();
+        
         // $('button#submit-query').click(function() {
         //   var type_val = $('#type-area').val();
         //   alert('clicked!');
@@ -108,6 +109,42 @@
         //           }
         //   });
         // });
+        
+
+        function getJsondata() {
+          $.ajax({
+            url: '/query/get-query-example',
+            dataType: "json",
+            type: 'GET',
+            success: function(response) {
+                      console.log(response);
+                      exampleData = response;
+                      setQueryExample(exampleData);
+                  },
+                  error: function(error) {
+                      console.log(error);
+                  }
+          });
+        };
+
+        function setQueryExample(data) {
+          if(data) {
+            arTags = Object.keys(data.query_example);
+            $("#input-example").autocomplete({source: arTags});
+
+            $('#select-example-button').click(function() {
+                var exampleName = $('#input-example').val();
+                console.log(exampleName);
+                if(exampleName && exampleName != '') {
+                    queryText = exampleData.query_example[exampleName];
+                    if(queryText) {
+                        console.log(queryText);
+                        $('#type-area').val(queryText);
+                    }
+                }
+            });
+          }
+        };
       });
     </script>
   </body>

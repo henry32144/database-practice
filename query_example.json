@@ -1,0 +1,99 @@
+{
+	"query_example":{
+		"Q0":"SELECT Bdate, Address FROM EMPLOYEE WHERE Fname = 'John' AND Minit = 'B' AND Lname = 'Smith';",
+
+		"Q1":"SELECT Fname, Lname, Address FROM EMPLOYEE, DEPARTMENT WHERE Dname = 'Research' AND Dnumber = Dno;",
+
+		"Q1A":"SELECT Fname, EMPLOYEE.Name, Address FROM EMPLOYEE, DEPARTMENT WHERE DEPARTMENT.Name = 'Research' AND DEPARTMENT.Dnumber = EMPLOYEE.Dnumber;",
+
+		"Q1Ajoin":"SELECT Fname, Lname, Address FROM (EMPLOYEE JOIN DEPARTMENT ON Dno = Dnumber) WHERE Dname = 'Research';",
+
+		"Q1p":"SELECT EMPLOYEE.Fname, EMPLOYEE.LName, EMPLOYEE.Address FROM EMPLOYEE, DEPARTMENT WHERE DEPARTMENT.DName = 'Research' AND DEPARTMENT.Dnumber = EMPLOYEE.Dno;",
+
+		"Q1B":"SELECT E.Fname, E.LName, E.Address FROM EMPLOYEE AS E, DEPARTMENT AS D WHERE D.DName = 'Research' AND D.Dnumber = E.Dno;",
+
+		"Q1Bjoin":"SELECT Fname, Lname, Address FROM (EMPLOYEE NATURAL JOIN (DEPARTMENT AS DEPT (Dname, Dno, Mssn, Msdate))) WHERE Dname = 'Research';",
+
+		"Q1C":"SELECT * FROM EMPLOYEE WHERE Dno = 5;",
+
+		"Q1D":"SELECT * FROM EMPLOYEE, DEPARTMENT WHERE Dname = 'Research' AND Dno = Dnumber;",
+
+		"Q2":"SELECT Pnumber, Dnum, Lname, Address, Bdate FROM PROJECT, DEPARTMENT, EMPLOYEE WHERE Dnum = Dnumber AND Mgr_ssn = Ssn AND Plocation = 'Stafford'",
+
+		"Q2A":"SELECT Pnumber, Dnum, Lname, Address, Bdate FROM ((PROJECT JOIN DEPARTMENT ON Dnum = Dnumber) JOIN EMPLOYEE ON Mgr_ssn = Ssn) WHERE Plocation = 'Stafford';",
+
+		"Q3A":"SELECT Fname, Lname FROM EMPLOYEE WHERE NOT EXISTS ( ( SELECT Pnumber FROM PROJECT WHERE Dnum = 5) EXCEPT ( SELECT Pno FROM WORKS_ON WHERE Ssn = Essn) );",
+
+		"Q3B":"SELECT Lname, Fname FROM EMPLOYEE WHERE NOT EXISTS ( SELECT * FROM WORKS_ON B WHERE ( B.Pno IN ( SELECT Pnumber FROM PROJECT WHERE Dnum = 5 ) AND NOT EXISTS ( SELECT * FROM WORKS_ON C WHERE C.Essn = Ssn AND C.Pno = B.Pno )));",
+
+		"Q4A":"( SELECT DISTINCT Pnumber FROM PROJECT, DEPARTMENT, EMPLOYEE WHERE Dnum = Dnumber AND Mgr_ssn = Ssn AND Lname = 'Smith' ) UNION ( SELECT DISTINCT Pnumber FROM PROJECT, WORKS_ON, EMPLOYEE WHERE Pnumber = Pno AND Essn = Ssn AND Lname = 'Smith' );",
+
+		"Q5":"SELECT Lname, Fname FROM EMPLOYEE WHERE ( SELECT COUNT (*) FROM DEPENDENT WHERE Ssn = Essn ) > = 2;",
+
+		"Q6":"SELECT Fname, Lname FROM EMPLOYEE WHERE NOT EXISTS ( SELECT * FROM DEPENDENT WHERE Ssn = Essn );",
+		
+		"Q7":"SELECT Fname, Lname FROM EMPLOYEE WHERE EXISTS ( SELECT * FROM DEPENDENT WHERE Ssn = Essn ) AND EXISTS ( SELECT * FROM DEPARTMENT WHERE Ssn = Mgr_ssn );",
+
+		"Q8":"SELECT E.Fname, E.Lname, S.Fname, S.Lname FROM EMPLOYEE AS E, EMPLOYEE AS S WHERE E.Super_ssn = S.Ssn;",
+
+		"Q8A":"SELECT E.Lname AS Employee_name, S.Lname AS Supervisor_name FROM EMPLOYEE AS E, EMPLOYEE AS S WHERE E.Super_ssn = S.Ssn;",
+
+		"Q8B":"SELECT E.Lname AS Employee_name, S.Lname AS Supervisor_name FROM (EMPLOYEE AS E LEFT OUTER JOIN EMPLOYEE AS S ON E.Super_ssn = S.Ssn);",
+
+		"Q8C":"SELECT E.Lname, S.Lname FROM EMPLOYEE E, EMPLOYEE S WHERE E.Super_ssn + = S.Ssn;",
+
+		"Q9":"SELECT Ssn FROM EMPLOYEE;",
+
+		"Q10":"SELECT Ssn, Dname FROM EMPLOYEE, DEPARTMENT;",
+
+		"Q10A":"SELECT * FROM EMPLOYEE, DEPARTMENT;",
+
+		"Q11":"SELECT ALL Salary FROM EMPLOYEE;",
+
+		"Q11A":"SELECT DISTINCT Salary FROM EMPLOYEE;",
+
+		"Q12":"SELECT Fname, Lname FROM EMPLOYEE WHERE Address LIKE '%Houston,TX%';",
+
+		"Q12A":"SELECT Fname, Lname FROM EMPLOYEE WHERE Bdate LIKE '_ _ 7 _ _ _ _ _ _ _';",
+
+		"Q13":"SELECT E.Fname, E.Lname, 1.1 * E.Salary AS Increased_sal FROM EMPLOYEE AS E, WORKS_ON AS W, PROJECT AS P WHERE E.Ssn = W.Essn AND W.Pno = P.Pnumber AND P.Pname = 'ProductX';",
+
+		"Q14":"SELECT * FROM EMPLOYEE WHERE (Salary BETWEEN 30000 AND 40000) AND Dno = 5;",
+
+		"Q15":"SELECT D.Dname, E.Lname, E.Fname, P.Pname FROM DEPARTMENT AS D, EMPLOYEE AS E, WORKS_ON AS W, PROJECT AS P WHERE D.Dnumber = E.Dno AND E.Ssn = W.Essn AND W.Pno = P.Pnumber ORDER BY D.Dname, E.Lname, E.Fname;",
+
+		"Q16":"SELECT E.Fname, E.Lname FROM EMPLOYEE AS E WHERE E.Ssn IN ( SELECT D.Essn FROM DEPENDENT AS D WHERE E.Fname = D.Dependent_name AND E.Sex = D.Sex );",
+
+		"Q16A":"SELECT E.Fname, E.Lname FROM EMPLOYEE AS E, DEPENDENT AS D WHERE E.Ssn = D.Essn AND E.Sex = D.Sex AND E.Fname = D.Dependent_name;",
+
+		"Q16B":"SELECT E.Fname, E.Lname FROM EMPLOYEE AS E WHERE EXISTS ( SELECT * FROM DEPENDENT AS D WHERE E.Ssn = D.Essn AND E.Sex = D.Sex AND E.Fname = D.Dependent_name);",
+
+		"Q17":"SELECT DISTINCT Essn FROM WORKS_ON WHERE Pno IN (1, 2, 3);",
+
+		"Q18":"SELECT Fname, Lname FROM EMPLOYEE WHERE Super_ssn IS NULL;",
+
+		"Q19":"SELECT SUM (Salary), MAX (Salary), MIN (Salary), AVG (Salary) FROM EMPLOYEE;",
+
+		"Q19A":"SELECT SUM (Salary) AS Total_Sal, MAX (Salary) AS Highest_Sal, MIN (Salary) AS Lowest_Sal, AVG (Salary) AS Average_Sal FROM EMPLOYEE;",
+
+		"Q20":"SELECT SUM (Salary), MAX (Salary), MIN (Salary), AVG (Salary) FROM (EMPLOYEE JOIN DEPARTMENT ON Dno = Dnumber) WHERE Dname = 'Research';",
+
+		"Q21":"SELECT COUNT (*) FROM EMPLOYEE;",
+
+		"Q22":"SELECT COUNT (*) FROM EMPLOYEE, DEPARTMENT WHERE DNO = DNUMBER AND DNAME = 'Research';",
+
+		"Q23":"SELECT COUNT (DISTINCT Salary) FROM EMPLOYEE;",
+
+		"Q24":"SELECT Dno, COUNT (*), AVG (Salary) FROM EMPLOYEE GROUP BY Dno;",
+
+		"Q25":"SELECT Pnumber, Pname, COUNT (*) FROM PROJECT, WORKS_ON WHERE Pnumber = Pno GROUP BY Pnumber, Pname;",
+
+		"Q26":"SELECT Pnumber, Pname, COUNT (*) FROM PROJECT, WORKS_ON WHERE Pnumber = Pno GROUP BY Pnumber, Pname HAVING COUNT (*) > 2;",
+
+		"Q27":"SELECT Pnumber, Pname, COUNT (*) FROM PROJECT, WORKS_ON, EMPLOYEE WHERE Pnumber = Pno AND Ssn = Essn AND Dno = 5 GROUP BY Pnumber, Pname;",
+
+		"Q28":"SELECT Dno, COUNT (*) FROM EMPLOYEE WHERE Salary>40000 AND Dno IN ( SELECT Dno FROM EMPLOYEE GROUP BY Dno HAVING COUNT (*) > 5) GROUP BY Dno;",
+
+		"Q28p":"WITH BIGDEPTS (Dno) AS ( SELECT Dno FROM EMPLOYEE GROUP BY Dno HAVING COUNT (*) > 5) SELECT Dno, COUNT (*) FROM EMPLOYEE WHERE Salary>40000 AND Dno IN BIGDEPTS GROUP BY Dno;"
+	}
+}
