@@ -1,0 +1,6 @@
+{
+  "name": "Database query practice",
+  "description": "A web for practicing db query, using Python Flask",
+  "repository": "https://github.com/henry32144/database-practice",
+  "keywords": ["python", "flask", "sqlite", "bootstrap4"]
+}

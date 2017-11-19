@@ -40,7 +40,7 @@ try it on Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
-#### Local server ( Windows )
+### Local server ( Windows )
 
 先裝好python 3 (這個編寫環境是3.6)
 
