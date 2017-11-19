@@ -16,6 +16,7 @@ https://database-query-practice.herokuapp.com/
 Built With
 ===============================
 在這個應用中使用了以下框架、庫:
+
 前端:
 *  [Bootstrap4](https://v4-alpha.getbootstrap.com/)
 *  [Bootstrap-html-template](https://startbootstrap.com/template-overviews/bare/)
@@ -33,11 +34,13 @@ Built With
 如何使用
 ==============================
 可以架到Heroku上玩玩
+
 try it on Heroku
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
-## Local server ( Windows )
+#### Local server ( Windows )
 
 先裝好python 3 (這個編寫環境是3.6)
 

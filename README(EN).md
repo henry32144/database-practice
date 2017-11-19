@@ -33,7 +33,7 @@ How to Use
 ==============================
 Or try it on Heroku(link is on the main page)
 
-## Local Server (Windows)
+#### Local Server (Windows)
 
 After install python 3(this app built in 3.6.3)
 
