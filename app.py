@@ -12,7 +12,7 @@ SQLITE_DB_PATH = 'enterprise.db'
 status_code = { 'operator_warn':"Only SELECT operator is accepted",
                 'empty_warn':"Nothing input",
                 'success':"Request has been send successful",
-                'no_result':"Request successed, but no result",
+                'no_result':"Request has succeeded, but no result",
                 'error':"An error occurred:",
 }
 
@@ -49,7 +49,7 @@ def index():
 
             # Table or data not exist.
             if not employees:
-                err_msg = "<p>There are something wrong in database, please Contact me</p>"
+                err_msg = "<p>There is something wrong in database, please Contact me</p>"
                 return err_msg, 404
         
     # Render Jinja2 html template module.
@@ -193,5 +193,5 @@ def teardown_request(exception):
         g.db.close()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
