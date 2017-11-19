@@ -2,12 +2,13 @@
 <html lang="en">
 
   <head>
-
+    <!-- Description -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A database Hands-on lab for the readers of the book 'Fundamentals of Database Systems'">
     <meta name="author" content="Henry">
 
+    <!-- Jinja2 template title part -->
     <title>{% block title %}Database - home{% endblock title %}</title>
 
     <!-- Bootstrap core CSS -->
@@ -41,6 +42,8 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+
+          <!-- Bootstrap navigation hightlight in jinj2 apporach -->
           {% set navigation_bar = [
               ('/', 'home', 'Home'),
               ('/query', 'query', 'Query'),
@@ -92,33 +95,20 @@
       $(function() {
         exampleData = '';
         arTags = []; 
+
+        //Get query example.
         getJsondata();
         
-        // $('button#submit-query').click(function() {
-        //   var type_val = $('#type-area').val();
-        //   alert('clicked!');
-        //   $.ajax({
-        //     url: '/query/submit-query',
-        //     data: {data: JSON.stringify(type_val)},
-        //     type: 'POST',
-        //     success: function(response) {
-        //               console.log(response);
-        //           },
-        //           error: function(error) {
-        //               console.log(error);
-        //           }
-        //   });
-        // });
-        
-
+        //This function send request to server to get query example.
         function getJsondata() {
           $.ajax({
             url: '/query/get-query-example',
             dataType: "json",
             type: 'GET',
             success: function(response) {
-                      console.log(response);
                       exampleData = response;
+
+                      //Set data
                       setQueryExample(exampleData);
                   },
                   error: function(error) {
@@ -127,18 +117,28 @@
           });
         };
 
+        //This function set data after ajax compelete.
         function setQueryExample(data) {
+
+          //Check if data exist.
           if(data) {
+
+            //Set query example name into Jquery autocompelete
             arTags = Object.keys(data.query_example);
+
             $("#input-example").autocomplete({source: arTags});
 
+            //Set click listener to button, if button clicked, 
+            //fill select example text into textarea.
             $('#select-example-button').click(function() {
+                //Get selected example name.
                 var exampleName = $('#input-example').val();
-                console.log(exampleName);
+                //Check if the text is not empty.
                 if(exampleName && exampleName != '') {
                     queryText = exampleData.query_example[exampleName];
+                    //Check if the example is exist.
                     if(queryText) {
-                        console.log(queryText);
+                        //Place the example into the textarea.
                         $('#type-area').val(queryText);
                     }
                 }

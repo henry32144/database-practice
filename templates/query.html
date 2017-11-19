@@ -12,6 +12,7 @@
 {% block tablecontent %}
 <h3 class="mt-0">Input area</h3>
 <div class="row">
+  <!--Search example block-->
 	<div class="search-wrapper col-lg-2" role="search">
 	  <div class="form-group input-group search-area">
 	    <input class="form-control" id="input-example" placeholder="ex: Q21" type="text">
@@ -22,6 +23,7 @@
 	    </span>
 	  </div>
 	</div>
+  <!--Type query block-->
 	<div class="form-group col-lg-10">
 	  <form class="input-group" action="/query/submit-query" method="post" role="form">
 		  <textarea class="form-control" rows="5" id="type-area" name="query-text"placeholder="SELECT ONLY"></textarea>
@@ -34,6 +36,7 @@
 <HR>
 {% endblock tablecontent %}
 
+<!--Request result status-->
 {% block resultstatus %}
   <P>{{ user_input }}</P>
   {% if status %}
@@ -53,6 +56,7 @@
   {% endif %}
 {% endblock resultstatus %}
 
+<!--Request result area-->
 {% block tableresult %}
   <HR>
   {%- if results -%}
