@@ -8,6 +8,10 @@ Database 查詢練習應用 - Database query practice app
 
 應用中的範例是根據書上的，根據實驗，有些範例是會跑出錯誤的，不過並不影響運行
 
+Demo
+===============================
+https://database-query-practice.herokuapp.com/
+
 
 Built With
 ===============================
@@ -28,10 +32,23 @@ Built With
 
 如何使用
 ==============================
-開啟cmd安裝好flask後，在應用根目錄輸入
+可以架到Heroku上玩玩
+try it on Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+
+## Local server ( Windows )
+
+先裝好python 3 (這個編寫環境是3.6)
+
+開啟cmd到這個資料夾後，輸入
+```
+pip -r requirements.txt
+```
+裝好後,輸入
+```
 python app.py
-
+```
 即可開啟local server
 
 

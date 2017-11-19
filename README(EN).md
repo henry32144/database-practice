@@ -8,6 +8,11 @@ This app's database is the same as the example on [Fundamentals of Database Syst
 
 Query examples are according to the [Fundamentals of Database Systems, Global Edition](http://catalogue.pearsoned.co.uk/educator/product/Fundamentals-of-Database-Systems-Global-Edition/9781292097619.page), By test, there are some examples are not work, but doesnt affect the app.
 
+Demo
+===============================
+https://database-query-practice.herokuapp.com/
+
+
 Built With
 ===============================
 FrontEnd:
@@ -26,15 +31,26 @@ Database:
 
 How to Use
 ==============================
-Open cmd, and install flask if you dont have.
+Or try it on Heroku(link is on the main page)
 
-and cd to the root folder of this app 
+## Local Server (Windows)
+
+After install python 3(this app built in 3.6.3)
+
+Open cmd, and cd to the root folder of this app 
 
 type 
+```
+pip -r requirements.txt
+```
 
+After install finish, and then type
+
+```
 python app.py
+```
 
-and you can run a local server 
+Ok! you are running a local server 
 
 
 Attention
