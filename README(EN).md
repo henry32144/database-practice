@@ -12,7 +12,7 @@ How to Use
 ===============================
 * Click query on the navigation bar(upside) then you can start query.
 
-* In the query page, the little block on the left is the demo selector, you can find demos' code on the book. And the right side is text area, you can directly type SQL syntax here, and when you finish, press the query button, the result would show up. 
+* In the query page, the little block on the left is the demo selector, here you can find demos' code on the book. And the right side is text area, you can directly type SQL syntax here, and when you finish, press the query button, the result would show up. 
 
 
 Demo
