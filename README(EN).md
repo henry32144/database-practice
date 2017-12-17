@@ -8,6 +8,13 @@ This app's database is the same as the example on [Fundamentals of Database Syst
 
 Query examples are according to the [Fundamentals of Database Systems, Global Edition](http://catalogue.pearsoned.co.uk/educator/product/Fundamentals-of-Database-Systems-Global-Edition/9781292097619.page), By test, there are some examples are not work, but doesnt affect the app.
 
+How to Use
+===============================
+* Click query on the navigation bar(upside) then you can start query.
+
+* In the query page, the little block on the left is the demo selector, you can find demos' code on the book. And the right side is text area, you can directly type SQL syntax here, and when you finish, press the query button, the result would show up. 
+
+
 Demo
 ===============================
 https://database-query-practice.herokuapp.com/
@@ -29,7 +36,7 @@ BackEnd:
 Database:
 *  [SQlite3](https://www.sqlite.org/)
 
-How to Use
+How to Open
 ==============================
 Or try it on Heroku(link is on the main page)
 
