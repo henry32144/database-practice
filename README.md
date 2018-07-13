@@ -1,6 +1,9 @@
 Database 查詢練習應用 - Database query practice app
 ===============================
-這個app可以用來練習資料庫SELECT的操作，個人鑑於學習資料庫課程時，有時會不清楚書上的範例的結果會得出什麼，
+
+[English Version](https://github.com/henry32144/database-practice/blob/master/README(EN).md)
+
+這個app可以用來練習資料庫SELECT的操作，個人鑑於自己學習學校的資料庫課程時，有時會不清楚書上的範例的結果會得出什麼，
 
 所以做了這個網站，也順便練習SQlite3 和 Python flask 當作後端.
 
